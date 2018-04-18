@@ -1,0 +1,2 @@
+class FunctionalError(Exception):
+    pass
