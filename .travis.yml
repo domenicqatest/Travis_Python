@@ -12,6 +12,8 @@ python:
   #- "3.7-dev"  # 3.7 development branch
 # command to install dependencies
 install:
+  - /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  - brew install python@2
   - pip install selenium pytest assertlib
   - pip install unittest2
   - pip install requests
