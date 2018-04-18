@@ -1,0 +1,24 @@
+language: python
+python:
+  #- "2.6"
+  - "2.7"
+  #- "3.3"
+  #- "3.4"
+  #- "3.5"
+  #- "3.5-dev"  # 3.5 development branch
+  #- "3.6"
+  #- "3.6-dev"  # 3.6 development branch
+  #- "3.7-dev"  # 3.7 development branch
+# command to install dependencies
+install:
+  - pip install selenium pytest assertlib
+  - pip install unittest2
+  - pip install requests
+  - pip install xlrd
+  - pip install xlwt
+  - pip install xlutils
+  - pip install html-testRunner
+  - pip install chromedriver_installer
+# command to run tests
+script:
+  - pytest main.py -s # or py.test for Python versions 3.5 and below
