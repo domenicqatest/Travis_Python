@@ -12,16 +12,18 @@ python:
   #- "3.7-dev"  # 3.7 development branch
 # command to install dependencies
 install:
-  - /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  - brew install python@2
-  - pip install selenium pytest assertlib
-  - pip install unittest2
-  - pip install requests
-  - pip install xlrd
-  - pip install xlwt
-  - pip install xlutils
-  - pip install html-testRunner
+  # - /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  # - brew install python@2
+  # - pip install selenium pytest assertlib
+  # - pip install unittest2
+  # - pip install requests
+  # - pip install xlrd
+  # - pip install xlwt
+  # - pip install xlutils
+  # - pip install html-testRunner
   #- pip install chromedriver_installer
 # command to run tests
 script:
+  - python --version
+  - pip freeze
   - pytest amp_fails_only.py -s # or py.test for Python versions 3.5 and below
