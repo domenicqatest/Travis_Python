@@ -11,6 +11,4 @@ install:
   #- pip install chromedriver_installer
 # command to run tests
 script:
-  - python --version
-  - pip freeze
-  - pytest amp_fails_only.py -s # or py.test for Python versions 3.5 and below
+  - py.test amp_fails_only.py -s # or py.test for Python versions 3.5 and below
