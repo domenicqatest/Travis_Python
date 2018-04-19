@@ -10,14 +10,13 @@ from xlutils.copy import copy
 from selenium.webdriver.common.keys import Keys
 from assertlib import assertEqual
 
-#driver = webdriver.Chrome()
-#driver.set_window_size(1675, 875)
+driver = webdriver.Chrome()
+driver.set_window_size(1675, 875)
 # hide window while scheduler is running
-#driver.set_window_position(-2000, 0)
-#driver.implicitly_wait(1)
+driver.set_window_position(-2000, 0)
+driver.implicitly_wait(1)
 
-class TestAmpURLs(unittest.TestCase):
-    @classmethod
+class TestAmpURLs(self):
 
     def test_validate_urls(self):
         "AMP Validator opened and URLs tested from excel sheet"
@@ -108,8 +107,7 @@ class TestAmpURLs(unittest.TestCase):
             driver.find_element_by_xpath("//input[@id='input']").clear()
             time.sleep(1)
 
-class TestEmailLogin(unittest.TestCase):
-    @classmethod
+class TestEmailLogin(self):
 
     def test_email_login(self):
         """Email client initiated"""
@@ -161,7 +159,7 @@ class TestEmailLogin(unittest.TestCase):
 class TestSendEmails(unittest.TestCase):
     @classmethod
 
-    def test_send_from_excel(self):
+    def send_from_excel(self):
         """Data extracted from excel and pasted into email"""
         
         # open workbook
@@ -227,22 +225,6 @@ class TestSendEmails(unittest.TestCase):
 
         assertEqual(pass_count, count)
         
-    @classmethod
-    def tearDownClass(cls):
+    def tearDownClass(self):
         # close the browser window
         driver.quit()
-
-        def is_element_present(how, what):
-            """
-            Helper method to confirm the presence of an element on page
-            :params how: By locator type
-            :params what: locator value
-            """
-            try:
-                driver.find_element(by=how, value=what)
-            except NoSuchElementException:
-                return False
-            return True
-
-#if __name__ == '__main__':
-    #unittest.main(verbosity=2)
