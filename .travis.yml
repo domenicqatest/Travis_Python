@@ -1,0 +1,18 @@
+#os: osx
+language: python
+
+cache: pip
+
+install:
+  - pip install selenium pytest assertlib
+  - pip install unittest2
+  - pip install requests
+  - pip install xlrd
+  - pip install xlwt
+  - pip install xlutils
+  - pip install html-testRunner
+  - pip install chromedriver_installer
+# command to run tests
+script:
+  #- pytest test.py -s # or py.test for Python versions 3.5 and below
+  - python test.py -s # or py.test for Python versions 3.5 and below
