@@ -14,4 +14,5 @@ install:
   - pip install chromedriver_installer
 # command to run tests
 script:
-  - pytest test.py -s # or py.test for Python versions 3.5 and below
+  #- pytest test.py -s # or py.test for Python versions 3.5 and below
+  - python test.py -s # or py.test for Python versions 3.5 and below
