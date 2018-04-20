@@ -16,10 +16,13 @@ driver.set_window_size(1675, 875)
 driver.set_window_position(-2000, 0)
 driver.implicitly_wait(1)
 
-class TestAmpURLs(self):
+def teardown_module(module):
+    driver.quit()
 
-    def test_validate_urls(self):
-        "AMP Validator opened and URLs tested from excel sheet"
+class TestAmpURLs(object):
+
+    def validate_urls(self):
+        "This will open the AMP Validator URL and test predetermined URLs by way of 'import AMP_URLS'"
         
         # open the validator page
         driver.get("https://validator.ampproject.org/")
@@ -89,7 +92,7 @@ class TestAmpURLs(self):
 
             else:
 
-                # background color - GREEN
+                # background color - RED
                 style = xlwt.XFStyle()
                 pattern = xlwt.Pattern()
                 pattern.pattern = xlwt.Pattern.SOLID_PATTERN
@@ -102,15 +105,13 @@ class TestAmpURLs(self):
                 print('\n')  # adds line break
                 print "URL #", i + 1, "validation has FAILED. - ", urls_list
 
-            copy_book.save('reports/Excel_Files/AMP_URL_Results.xls')
+            copy_book.save('amp_validation_results/AMP_URL_Results.xls')
 
             driver.find_element_by_xpath("//input[@id='input']").clear()
             time.sleep(1)
 
-class TestEmailLogin(self):
-
-    def test_email_login(self):
-        """Email client initiated"""
+    def test_send_email(self):
+        """This will send the results via email"""
         print('\n')  # adds line break
 
         ### Open Outlook Mail ###
@@ -156,19 +157,16 @@ class TestEmailLogin(self):
             "//div[@id='primaryContainer']/div[4]/div/div/div/div[4]/div[3]/div/div[5]/div/div/div[3]/div[4]/div/div/div[2]/div[2]/div[2]/div[3]/div/div[3]/div/div[3]/div").click()
         time.sleep(3)
 
-class TestSendEmails(unittest.TestCase):
-    @classmethod
-
-    def send_from_excel(self):
-        """Data extracted from excel and pasted into email"""
+    def test_send_from_excel(self):
+        """This pulls the data from excel and pastes the rows one at a time into the email"""
         
         # open workbook
         book = xlrd.open_workbook(
-            '/Users/dsorace/PycharmProjects/hearst/2017/amp_validation/reports/Excel_Files/AMP_URL_Results.xls')
+            '/Users/dsorace/PycharmProjects/hearst/2017/amp_validation/amp_validation_results/AMP_URL_Results.xls')
         worksheet = book.sheet_by_index(0)
 
         pass_count = 0
-        count = 271  # Number of URLs = 271 len(url_list)?
+        count = 271  # Number of URLs = 271
 
         for i in xrange(count):  # Number of URLs = 271
             rownum = (i + 1)
@@ -224,7 +222,3 @@ class TestSendEmails(unittest.TestCase):
         time.sleep(5)
 
         assertEqual(pass_count, count)
-        
-    def tearDownClass(self):
-        # close the browser window
-        driver.quit()
