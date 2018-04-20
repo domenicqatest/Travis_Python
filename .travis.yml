@@ -1,6 +1,8 @@
 #os: osx
 language: python
 
+cache: pip
+
 install:
   - pip install selenium pytest assertlib
   - pip install unittest2
